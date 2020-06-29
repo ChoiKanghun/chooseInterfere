@@ -1,3 +1,6 @@
+내가 짠 코드보다 더 예쁘게 짠 rchallie의 코드를 수도코드로 만들어봄.
+https://github.com/rchallie/ft_printf
+
 # 메인함수 - ft_printf(const char *str, …)
 const char *str을 인자로 받음
 필요한 필드 선언
