@@ -489,25 +489,6 @@ int main(void)
 	ft_printf("ft_printf :%s\nft_printf :%5.3d\n", "width = 5, prec : 3, d = -1", -1);
 	printf("printf :%s\nprintf :%.5d\n", "prec : 5, d = -4321", -4321);
 	ft_printf("ft_printf :%s\nft_printf :%.5d\n", "prec : 5, d = -4321", -4321);
-	printf("printf :%s\nprintf :%2.2d\n", "prec : 2, width = 2, d = 43", 43);
-	ft_printf("ft_printf :%s\nft_printf :%2.2d\n", "prec : 2, width = 2, d = 43", 43);
-	printf("printf :%s\nprintf :%2.2d\n", "prec : 2, width = 2, d = -43", -43);
-	ft_printf("ft_printf :%s\nft_printf :%2.2d\n", "prec : 2, width = 2, d = -43", -43);
-	printf("printf :%s\nprintf :%4.2d\n", "prec : 2, width = 4, d = -43", -43);
-	ft_printf("ft_printf :%s\nft_printf :%4.2d\n", "prec : 2, width = 4, d = -43", -43);
-	printf("printf :%s\nprintf :%4.3d\n", "prec : 3, width = 4, d = -43", -43);
-	ft_printf("ft_printf :%s\nft_printf :%4.3d\n", "prec : 3, width = 4, d = -43", -43);
-	printf("printf :%s\nprintf :%3.5d\n", "prec : 5, width = 3, d = -43", -43);
-	ft_printf("ft_printf :%s\nft_printf :%3.5d\n", "prec : 5, width = 3, d = -43", -43);
-	printf("printf :%s\nprintf :%5.5d\n", "prec : 5, width = 5, d = 43", 43);
-	ft_printf("ft_printf :%s\nft_printf :%5.5d\n", "prec : 5, width = 5, d = 43", 43);
-
-
-
-
-
-
-
 }
 
 
