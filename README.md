@@ -4,45 +4,45 @@ https://github.com/rchallie/ft_printf
 # 메인함수 - ft_printf(const char *str, …)
 const char *str을 인자로 받음
 필요한 필드 선언
-	str을 임시로 저장할 const char *save 선언
-	va_list args 선언
-	int char_count 선언
-save에 input을 strdup
-char_count를 0으로 초기화
-va_start시킴(va_start(args, input))
-char_count에 ft_treat_save 함수의 리턴 값 넣음. (함수 인자는 save, args)
-	ft_treat_save는 const char *save와 va_list args를 받아 save 문자열의 끝에 도달할 때까지 함수들을 적용.
-va_end(args) 해줌.
-인자로 받아온 (char*) save 를 free 시켜줌
-char_count를 리턴.
-## ft_treat_save(const char *save, va_list args)
+	str을 임시로 저장할 const char *save 선언  
+	va_list args 선언  
+	int char_count 선언  
+save에 input을 strdup  
+char_count를 0으로 초기화  
+va_start시킴(va_start(args, input))  
+char_count에 ft_treat_save 함수의 리턴 값 넣음. (함수 인자는 save, args)  
+	ft_treat_save는 const char *save와 va_list args를 받아 save 문자열의 끝에 도달할 때까지 함수들을 적용.    
+va_end(args) 해줌.  
+인자로 받아온 (char*) save 를 free 시켜줌  
+char_count를 리턴.  
+## ft_treat_save(const char *save, va_list args)  
 	
-필요한 필드 선언
-	int	i;
-	t_flags	flags;
-	int	char_count;
-필드 초기화
-	i = 0;
-	char_count = 0;
-while (1)
-	flags에 ft_init_flags() 의 리턴값을 담음.
-	if save[i]가 널 문자를 만나면
-		break;
-	else if save[i] 번째가 '%' 이면서 save[i + 1] 번째가 널 문자가 아니면
-		플래그 자리수 만큼 i를 더함.(최소 1을 더해서 %다음 글자를 가리키게 만듬)
-		(== i에 ft_flag_parse(save, ++i, &flags, args)의 리턴값을 담음.)
-		if save[i]가 `cspdiuxX%` 안에 있다면
-			char_count에 save[i]에 해당하는 글자와 관련된 함수를 적용해 리턴값을 더함.
-			(이 경우 save[i]에 해당하는 글자는 cspdiuxX%)
-			(관련 함수는 혼자서 생각해보기. Atoi, atoi_base 등을 이용하면 됨.)
-			(char_count에 ft_treatment((char)flags.type, flags, args)의 결과값을 더함.)
-		else if save[i]가 '%'가 아닌 경우(즉 일반적인 경우)
-			char_count에 1을 더함.
-			ft_putchar(save[i])	
-	end if
-	i++
-end while
-return char_count
+필요한 필드 선언  
+	int	i;  
+	t_flags	flags;  
+	int	char_count;   
+필드 초기화     
+	i = 0;  
+	char_count = 0;  
+while (1)    
+	flags에 ft_init_flags() 의 리턴값을 담음.   
+	if save[i]가 널 문자를 만나면   
+		break;   
+	else if save[i] 번째가 '%' 이면서 save[i + 1] 번째가 널 문자가 아니면    
+		플래그 자리수 만큼 i를 더함.(최소 1을 더해서 %다음 글자를 가리키게 만듬)   
+		(== i에 ft_flag_parse(save, ++i, &flags, args)의 리턴값을 담음.)  
+		if save[i]가 `cspdiuxX%` 안에 있다면   
+			char_count에 save[i]에 해당하는 글자와 관련된 함수를 적용해 리턴값을 더함.   
+			(이 경우 save[i]에 해당하는 글자는 cspdiuxX%)   
+			(관련 함수는 혼자서 생각해보기. Atoi, atoi_base 등을 이용하면 됨.)    
+			(char_count에 ft_treatment((char)flags.type, flags, args)의 결과값을 더함.)    
+		else if save[i]가 '%'가 아닌 경우(즉 일반적인 경우)   
+			char_count에 1을 더함.    
+			ft_putchar(save[i])	   
+	end if   
+	i++   
+end while   
+return char_count   
 		
 ### t_flags ft_init_flags()
 flags의 값들을 초기화
