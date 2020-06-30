@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kchoi <kchoi@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/11 14:17:14 by kchoi             #+#    #+#             */
+/*   Updated: 2020/04/11 16:58:38 by kchoi            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 char	*ft_strrchr(const char *s, int c)
@@ -7,8 +19,6 @@ char	*ft_strrchr(const char *s, int c)
 
 	i = 0;
 	ptr = NULL;
-	if (!s)
-		return (ptr);
 	while (s[i])
 	{
 		if (s[i] == (char)c)

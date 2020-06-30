@@ -1,206 +1,285 @@
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdarg.h>
+#include "ft_printf.h"
 
-int	ft_atoi(char *s)
+int	ft_putchar(char c)
 {
-	int i;
-	i = 0;
-	int ret = 0;
-	int minus = 1;
-	while (s[i] == '\n' || s[i] == ' ' || s[i] == '+')
-		i++;
-	if (s[i] == '-')
-	{
-		i++;
-		minus = -1;
-	}
-	while (s[i] <= '9' && s[i] >= '0')
-	{
-		ret = ret * 10 + s[i] - '0';
-		i++;
-	}
-	return (ret * minus);
+	write(1, &c, 1);
+	return (1);
 }
 
-int	ft_strlen(char *str)
+int	ft_is_in_type_list(char c)
 {
-	int i = 0;
+	return (c == 'c' || c == 's' || c == 'p' ||
+c == 'd' || c == 'i' || c == 'u' || c == 'x' ||
+c == 'X' || c == '%');
+}
+
+int	ft_is_in_flags_list(char c)
+{
+	return (c == '-' || c == '.' || c == '0' || c == '*' ||
+c == ' ');
+}
+
+int	ft_treat_width(int width, int minus, int has_zero)
+{
+	int char_count;
+
+	char_count = 0;
+	while (width - minus > 0)
+	{
+		if (has_zero)
+			ft_putchar('0');
+		else
+			ft_putchar(' ');
+		width -= 1;
+		char_count++;
+	}
+	return (char_count);
+}
+
+int	ft_treat_char(char c, t_flags flags)
+{
+	int	char_count;
+
+	char_count = 0;
+	if (flags.minus == -1)
+		ft_putchar(c);
+	char_count = ft_treat_width(flags.width, 1, 0);
+	if (flags.minus == 0)
+		ft_putchar(c);
+	return (char_count + 1);
+}
+
+int		ft_putstrprec(char *str, int prec)
+{
+	int	char_count;
+
+	char_count = 0;
+	while (str[char_count] && char_count < prec)
+	{
+		ft_putchar(str[char_count]);
+		char_count++;
+	}
+	return (char_count);
+}
+
+static int	ft_putpart_int(char *str, t_flags flags)
+{
+	int	char_count;
+
+	char_count = 0;
+	if (flags.dot >= 0)
+	{
+		char_count += ft_treat_width(flags.dot, ft_strlen(str), 0);
+		char_count += ft_putstrprec(str, flags.dot);
+	}
+	else
+		char_count += ft_putstrprec(str, ft_strlen(str));
+	return (char_count);
+}
+
+int	ft_treat_string(char *str, t_flags flags)
+{
+	int	char_count;
+
+	char_count = 0;
 	if (!str)
-		return (i);
+		str = ("(null)");
+	if (flags.dot >= 0 && (size_t)flags.dot > ft_strlen(str))
+		flags.dot = ft_strlen(str);
+	if (flags.minus == 1)
+		char_count += ft_put_part_int(str, flags);
+	if (flags.dot >= 0)
+		char_count += ft_treat_width(flags.width, flags.dot, 0);
+	else
+		char_count += ft_treat_width(flags.width, ft_strlen(str), 0);
+	if (flags.minus == 0)
+		char_count += ft_put_part_int(str, flags);
+	return (char_count);
+}
+
+static char	*treat_base(unsigned long long ull_save, int base, char *rtn, int count)
+{
+	while (ull_save != 0)
+	{
+		if ((ull_save % base) < 10)
+			rtn[count - 1] = (ull_save % base) + '0';
+		else
+			rtn[count - 1] = (ull_save % base) + 'a';
+		ull_save /= base;
+		count--;
+	}
+	return (rtn);
+}
+
+char	*ft_ull_base(unsigned long long ull, int base)
+{
+	char			*rtn;
+	unsigned long long	ull_save;
+	int			count;
+
+	rtn = 0;
+	count = 0;
+	ull_save = ull;
+	if (ull = 0)
+		return (ft_strdup("0"));
+	while (ull != 0)
+	{
+		ull /= base;
+		count++;
+	}
+	if (!(rtn = malloc(sizeof(char) * (count + 1))))
+		return (NULL);
+	rtn[count] = '\0';
+	rtn = treat_base(ull_save, base, rtn, count);
+	return (rtn);
+}
+
+char	*ft_str_tolower(char *str)
+{
+	int i;
+
+	i = 0;
 	while (str[i])
+	{
+		str[i] = ft_tolower(str[i]);
 		i++;
+	}
+	return (str);
+}
+
+int	ft_treat_pointer(unsigned long long ull, t_flags flags)
+{
+	char	*pointer;
+	int	char_count;
+
+	char_count = 0;
+	if (ull == 0 && flags.dot == 0)
+	{
+		char_count += ft_putstrprec("0x", 2);
+		return (char_count += ft_treat_width(flags.width, 0, 1));
+	}
+	pointer = ft_ull_base(ull, 16);
+	pointer = ft_str_tolower(pointer);
+	if ((size_t)flags.dot < ft_strlen(pointer))
+		flags.dot = ft_strlen(pointer);
+	if (flags.minus == 1)
+		char_count += ft_in_put_part_pointer(pointer, flags);
+	char_count += ft_treat_width(flags.width, ft_strlen(pointer) + 2, 0);
+	if (flags.minus == 0)
+		char_count += ft_in_put_part_pointer(pointer, flags);
+	free(pointer);
+	return (char_count);
+
+}
+
+static int	ft_in_put_part_int(char *d_i, int save_i, t_flags flags)
+{
+	int	char_count;
+
+	char_count = 0;
+	if (save_i < 0 && flags.dot >= 0)
+		ft_putchar('-');
+	if (flags.dot >= 0)
+		char_count += ft_treat_width(flags.dot - 1, ft_strlen(d_i) - 1, 1);
+	char_count += ft_putstrprec(d_i, ft_strlen(d_i));
+	return (char_count);
+}
+
+static int	ft_put_part_int(char *d_i, int save_i, t_flags flags)
+{
+	int	char_count;
+
+	char_count = 0;
+	if (flags.minus == 1)
+		char_count += ft_in_put_part_int(d_i, save_i, flags);
+	if (flags.dot >= 0 && (size_t)flags.dot < ft_strlen(d_i))
+		flags.dot = ft_strlen(d_i);
+	if (flags.dot >= 0)
+	{
+		flags.width -= flags.dot;
+		char_count += ft_treat_width(flags.width, 0, 0);
+	}
+	else
+		char_count += ft_treat_width(flags.width, ft_strlen(d_i), flags.zero);
+	if (flags.minus == 0)
+		char_count += ft_in_put_part_int(d_i, save_i, flags);
+	return (char_count);
+}
+
+int	ft_treat_int(int i, t_flags flags)
+{
+	char	*d_i;
+	int	save_i;
+	int	char_count;
+
+	save_i = i;
+	char_count = 0;
+	if (flags.dot == 0 && i == 0)
+	{
+		char_count += ft_treat_width(flags.width, 0, 0);
+		return (char_count);
+	}
+	if (i < 0 && (flags.dot >= 0 || flags.zero == 1))
+	{
+		if (flags.zero == 1 && flags.dot == -1)
+			ft_putstrprec("-", 1);
+		i *= -1;
+		flags.zero = 1;
+		flags.width--;
+		char_count++;
+	}
+	d_i = ft_itoa(i);
+	char_count += ft_put_part_int(d_i, save_i, flags);
+	free(d_i);
+	return (char_count);
+}
+
+int	ft_flag_dot(const char *save, int start, t_flags *flags, va_list ap)
+{
+	int	i;
+
+	i = start;
+	i++;
+	if (save[i] == '*')
+	{
+		flags->dot = va_arg(ap, int);
+		i++;
+	}
+	else
+	{
+		flags->dot = 0;
+		while (ft_isdigit(save[i]))
+		{
+			flags->dot = (flags->dot * 10) + (save[i] - '0');
+			i++;
+		}
+	}
 	return (i);
 }
 
-char	*ft_strnew(int size)
+t_flags	ft_flag_minus(t_flags flags)
 {
-	char	*dest;
-	int	i = 0;
-	if (!(dest = (char *)malloc(sizeof(char) * size + 1)))
-		return (NULL);
-	while (size)
-	{
-		dest[i] = 0;
-		i++;
-		size--;
-	}
-	dest[i] = '\0';
-	return (dest);
+	flags.minus = 1;
+	flags.zero = 0;
+	return (flags);
 }
 
-char	*ft_strcpy(char *dst, char *src)
+t_flags ft_flag_width(va_list ap, t_flags flags)
 {
-	int i =0;
-	while (src[i])
+	flags.star = 1;
+	flags.width = va_arg(ap, int);
+	if (flags.width < 0)
 	{
-		dst[i] = src[i];
-		i++;
+		flags.minus = 1;
+		flags.width *= -1;
 	}
-	return (dst);
+	return (flags);
 }
 
-char	*ft_strdup(char *s)
+t_flags	ft_flag_digit(char c, t_flags flags)
 {
-	char	*dest;
-
-	dest = ft_strnew(ft_strlen(s));
-	ft_strcpy(dest, s);
-	return (dest);
-}
-
-char	*ft_strjoin(char *s1, char *s2)
-{
-	int	i = 0;
-	int	j = 0;
-	int	len = ft_strlen(s1) + ft_strlen(s2);
-	char	*dest = ft_strnew(len);
-	while (s1[i])
-	{
-		dest[j] = s1[i];
-		i++;
-		j++;
-	}
-	i = 0;
-	while (s2[i])
-	{
-		dest[j] = s2[i];
-		j++;
-		i++;
-	}
-	return (dest);
-}
-
-char	*ft_substr(char *s, int start, int len)
-{
-	int	i = 0;
-	char	*dest;
-
-	dest = ft_strnew(len);
-	i = 0;
-	while (len)
-	{
-		dest[i] = s[start];
-		i++;
-		start++;
-		len--;
-	}
-	return (dest);
-}
-
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-int	ft_isdigit(char c)
-{
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
-}
-
-int	ft_size(int n)
-{
-	int tmp;
-	int size = 0;
-	if (n < 0)
-	{
-		tmp = -n;
-		size++;
-	}
-	else
-		tmp = n;
-	while (tmp > 0)
-	{
-		tmp = tmp / 10;
-		size++;
-	}
-	return (size);
-}
-
-char	*ft_fill_char(int num, int size, char *dest)
-{
-	int tmp;
-	size -= 1;
-	if (num < 0)
-	{
-		tmp = -num;
-		dest[0] = '-';
-	}
-	else
-		tmp = num;
-	if (tmp >= 10)
-	{
-		ft_fill_char(tmp / 10, size, dest);
-		dest[size] = tmp % 10 + '0';
-	}
-	else
-		dest[size] = tmp + '0';
-	return (dest);
-}
-
-char	*ft_itoa(int num)
-{
-	char *dest;
-
-	if (num == -2147483648)
-		return (ft_strdup("-2147483648"));
-	if (num == 0)
-		return (ft_strdup("0"));
-	int size = ft_size(num);
-	dest = ft_strnew(size);
-	return (ft_fill_char(num ,size, dest));
-}
-
-int	conv_hex(int n)
-{
-	if (n <= 9)
-		return (n + '0');
-	else
-		return (n - 10 + 'a');
-}
-
-char	*aff_hex(unsigned long num)
-{
-	unsigned long tmp = num;
-	char	*nb;
-	int	size = 0;
-	while (tmp >= 16)
-	{
-		tmp = tmp / 16;
-		size++;
-	}
-	if (num < 16)
-		nb = ft_strnew(size + 1);
-	else
-		nb = ft_strnew(size);
-	while (size >= 0)
-	{
-		tmp = num % 16;
-		nb[size] = conv_hex(tmp);
-		num = num / 16;
-		size--;
-	}
-	return (nb);
+	if (flags.star == 1)
+		flags.width = 0;
+	flags.width = (flags.width * 10) + (c - '0');
+	return (flags);
 }

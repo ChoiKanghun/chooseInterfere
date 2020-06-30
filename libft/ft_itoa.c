@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kchoi <kchoi@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/11 14:11:39 by kchoi             #+#    #+#             */
+/*   Updated: 2020/04/12 17:37:04 by kchoi            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 static char	*if_n_is_zero(void)
@@ -14,7 +26,8 @@ static char	*if_n_is_minus_max(void)
 {
 	char	*result;
 
-	result = (char *)ft_calloc(sizeof(char), 12);
+	if (!(result = (char *)ft_calloc(sizeof(char), 12)))
+		return (NULL);
 	result[0] = '-';
 	result[1] = '2';
 	result[2] = '1';
@@ -74,7 +87,8 @@ char		*ft_itoa(int n)
 	else
 		if_n_is_plus(arr, n);
 	arr_len = ft_strlen(arr);
-	result = (char *)ft_calloc(sizeof(char), arr_len + 1);
+	if (!(result = (char *)ft_calloc(sizeof(char), arr_len + 1)))
+		return (NULL);
 	index = 0;
 	while (index < arr_len)
 	{

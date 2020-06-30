@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kchoi <kchoi@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/11 14:13:46 by kchoi             #+#    #+#             */
+/*   Updated: 2020/04/11 17:04:40 by kchoi            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 void	*ft_memset(void *b, int c, size_t len)
@@ -5,8 +17,6 @@ void	*ft_memset(void *b, int c, size_t len)
 	size_t i;
 
 	i = 0;
-	if (!(unsigned char *)b)
-		return (NULL);
 	while (i < len)
 	{
 		((t_uchar *)b)[i] = (t_uchar)c;

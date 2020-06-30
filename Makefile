@@ -22,7 +22,7 @@ INCLUDES = ./includes
 
 OBJS = $(SRCS:.c=.o)
 
-NAME = libft.a
+NAME = libftprintf.a
 
 ARRC = ar rc
 

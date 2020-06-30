@@ -1,19 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kchoi <kchoi@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/11 14:14:35 by kchoi             #+#    #+#             */
+/*   Updated: 2020/04/11 15:06:21 by kchoi            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-static size_t	get_word_count(char const *s, char c)
+static size_t	get_w_cnt(char const *s, char c)
 {
-	size_t word_count;
+	size_t w_cnt;
 	size_t index;
 	size_t in_word;
 
-	word_count = 0;
+	w_cnt = 0;
 	index = 0;
 	in_word = 0;
 	while (s[index])
 	{
 		if (s[index] != c && in_word == 0)
 		{
-			word_count++;
+			w_cnt++;
 			in_word = 1;
 		}
 		if (s[index] != c)
@@ -22,17 +34,17 @@ static size_t	get_word_count(char const *s, char c)
 			in_word = 0;
 		index++;
 	}
-	return (word_count);
+	return (w_cnt);
 }
 
-static void	init(size_t *index, size_t *j, size_t *len)
+static void		init(size_t *index, size_t *j, size_t *len)
 {
 	*index = 0;
 	*j = 0;
 	*len = 0;
 }
 
-static void	allocate_each_index(char **result, char const *s, char c, size_t word_count)
+static void		alloc_idx(char **result, char const *s, char c, size_t w_cnt)
 {
 	char	*each_result;
 	size_t	index;
@@ -40,7 +52,7 @@ static void	allocate_each_index(char **result, char const *s, char c, size_t wor
 	size_t	len;
 
 	init(&index, &j, &len);
-	while (j < word_count)
+	while (j < w_cnt)
 	{
 		if (s[index] == c || !s[index])
 		{
@@ -60,14 +72,16 @@ static void	allocate_each_index(char **result, char const *s, char c, size_t wor
 	}
 }
 
-char		**ft_split(char const *s, char c)
+char			**ft_split(char const *s, char c)
 {
 	char	**result;
-	size_t	word_count;
+	size_t	w_cnt;
 
-	word_count = get_word_count(s, c);
-	if (!(result = (char **)ft_calloc(sizeof(char *), (word_count + 1))))
+	if (!s)
 		return (NULL);
-	allocate_each_index(result, s, c, word_count);
+	w_cnt = get_w_cnt(s, c);
+	if (!(result = (char **)ft_calloc(sizeof(char *), (w_cnt + 1))))
+		return (NULL);
+	alloc_idx(result, s, c, w_cnt);
 	return (result);
 }

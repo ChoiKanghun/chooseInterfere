@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kchoi <kchoi@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/11 14:17:19 by kchoi             #+#    #+#             */
+/*   Updated: 2020/04/11 15:01:58 by kchoi            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-static int	if_word_in_str(const char c, const char *set)
+static int		if_word_in_str(const char c, const char *set)
 {
 	size_t	i;
 
@@ -38,7 +50,7 @@ static size_t	get_index(const char *s1, const char *set, int flag)
 	return (i);
 }
 
-char	*ft_strtrim(const char *s1, const char *set)
+char			*ft_strtrim(const char *s1, const char *set)
 {
 	char	*dest;
 	size_t	start;
@@ -48,7 +60,7 @@ char	*ft_strtrim(const char *s1, const char *set)
 		return (NULL);
 	start = get_index(s1, set, 1);
 	end = get_index(s1, set, -1);
-	if (!(dest = ft_calloc(sizeof(char), end - start + 1)))
+	if (!(dest = ft_calloc(sizeof(char), end - start + 2)))
 		return (NULL);
 	ft_memcpy(dest, s1 + start, end - start + 1);
 	return (dest);
