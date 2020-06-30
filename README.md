@@ -15,10 +15,10 @@ Make
 ./test
 ```
 <br>
--> 744 430 431 130   빼고 모두 패스.
+-> 744 430 431 130   빼고 모두 패스.<br>
 <br>
 2. https://github.com/gavinfielder/pft
-<br>
+<br><br>
 
 ```
 git clone https://github.com/gavinfielder/pft.git pft && echo "pft/" >> .gitignore
@@ -28,7 +28,7 @@ Make
 ./test
 
 ```
-<br>
+<br><br>
 -> 4192 4193 4194 647 497 빼고 올 패스
-<br>
+<br><br>
 rchallie github - https://github.com/rchallie/ft_printf
