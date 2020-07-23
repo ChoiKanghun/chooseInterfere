@@ -1,3 +1,7 @@
+### 결과 : 100
+
+<br>
+
 내가 짠 코드보다 더 예쁘게 짠 rchallie의 코드를 수도코드로 만들어봄. <br>
 https://42kchoi.tistory.com/153 
 
