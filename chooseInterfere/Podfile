@@ -6,8 +6,8 @@ target 'chooseInterfere' do
   use_frameworks!
 	
 	pod 'Firebase/Analytics'
-
-
+	pod 'Firebase/Database'
+	pod 'CodableFirebase'
   # Pods for chooseInterfere
 
   target 'chooseInterfereTests' do

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,13 +12,17 @@
 		66C89D8B21ECB4A55C25DD95 /* Pods_chooseInterfereTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 855F9EA0F8A318023AE15B29 /* Pods_chooseInterfereTests.framework */; };
 		7A42FC97269D5B7F0054E074 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A42FC96269D5B7F0054E074 /* AppDelegate.swift */; };
 		7A42FC99269D5B7F0054E074 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A42FC98269D5B7F0054E074 /* SceneDelegate.swift */; };
-		7A42FC9B269D5B7F0054E074 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A42FC9A269D5B7F0054E074 /* ViewController.swift */; };
 		7A42FC9E269D5B7F0054E074 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A42FC9C269D5B7F0054E074 /* Main.storyboard */; };
 		7A42FCA0269D5B820054E074 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A42FC9F269D5B820054E074 /* Assets.xcassets */; };
 		7A42FCA3269D5B820054E074 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A42FCA1269D5B820054E074 /* LaunchScreen.storyboard */; };
 		7A42FCAE269D5B820054E074 /* chooseInterfereTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A42FCAD269D5B820054E074 /* chooseInterfereTests.swift */; };
 		7A42FCB9269D5B820054E074 /* chooseInterfereUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A42FCB8269D5B820054E074 /* chooseInterfereUITests.swift */; };
 		7A42FCC7269D5C2E0054E074 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7A42FCC6269D5C2E0054E074 /* GoogleService-Info.plist */; };
+		7A7D7F2B269E7CFD006A680D /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7D7F2A269E7CFD006A680D /* Post.swift */; };
+		7A7D7F2D269E9E77006A680D /* WriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7D7F2C269E9E77006A680D /* WriteViewController.swift */; };
+		7A7D7F2F269ECB45006A680D /* OptionListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7D7F2E269ECB45006A680D /* OptionListTableViewCell.swift */; };
+		7A85420C269D60C3008E17DD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A85420B269D60C3008E17DD /* HomeViewController.swift */; };
+		7A854210269D7130008E17DD /* HomeContentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A85420F269D7130008E17DD /* HomeContentsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +52,6 @@
 		7A42FC93269D5B7F0054E074 /* chooseInterfere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = chooseInterfere.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A42FC96269D5B7F0054E074 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7A42FC98269D5B7F0054E074 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		7A42FC9A269D5B7F0054E074 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7A42FC9D269D5B7F0054E074 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7A42FC9F269D5B820054E074 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7A42FCA2269D5B820054E074 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -60,6 +63,11 @@
 		7A42FCB8269D5B820054E074 /* chooseInterfereUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chooseInterfereUITests.swift; sourceTree = "<group>"; };
 		7A42FCBA269D5B820054E074 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7A42FCC6269D5C2E0054E074 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7A7D7F2A269E7CFD006A680D /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		7A7D7F2C269E9E77006A680D /* WriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewController.swift; sourceTree = "<group>"; };
+		7A7D7F2E269ECB45006A680D /* OptionListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionListTableViewCell.swift; sourceTree = "<group>"; };
+		7A85420B269D60C3008E17DD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		7A85420F269D7130008E17DD /* HomeContentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContentsTableViewCell.swift; sourceTree = "<group>"; };
 		855F9EA0F8A318023AE15B29 /* Pods_chooseInterfereTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_chooseInterfereTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6C9E0EDFB2D1104D400A8DE /* Pods-chooseInterfere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chooseInterfere.release.xcconfig"; path = "Target Support Files/Pods-chooseInterfere/Pods-chooseInterfere.release.xcconfig"; sourceTree = "<group>"; };
 		FC2A230600AF792162B09288 /* Pods-chooseInterfereTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chooseInterfereTests.debug.xcconfig"; path = "Target Support Files/Pods-chooseInterfereTests/Pods-chooseInterfereTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -113,7 +121,6 @@
 				FC2A230600AF792162B09288 /* Pods-chooseInterfereTests.debug.xcconfig */,
 				14FF84FE183FFDBC5C8A5E7A /* Pods-chooseInterfereTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -142,10 +149,12 @@
 		7A42FC95269D5B7F0054E074 /* chooseInterfere */ = {
 			isa = PBXGroup;
 			children = (
+				7A7D7F29269E7CEE006A680D /* Model */,
+				7A85420E269D7102008E17DD /* TableViewCell */,
+				7A85420D269D60DD008E17DD /* ViewControllers */,
 				7A42FCC6269D5C2E0054E074 /* GoogleService-Info.plist */,
 				7A42FC96269D5B7F0054E074 /* AppDelegate.swift */,
 				7A42FC98269D5B7F0054E074 /* SceneDelegate.swift */,
-				7A42FC9A269D5B7F0054E074 /* ViewController.swift */,
 				7A42FC9C269D5B7F0054E074 /* Main.storyboard */,
 				7A42FC9F269D5B820054E074 /* Assets.xcassets */,
 				7A42FCA1269D5B820054E074 /* LaunchScreen.storyboard */,
@@ -170,6 +179,32 @@
 				7A42FCBA269D5B820054E074 /* Info.plist */,
 			);
 			path = chooseInterfereUITests;
+			sourceTree = "<group>";
+		};
+		7A7D7F29269E7CEE006A680D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7A7D7F2A269E7CFD006A680D /* Post.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7A85420D269D60DD008E17DD /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				7A85420B269D60C3008E17DD /* HomeViewController.swift */,
+				7A7D7F2C269E9E77006A680D /* WriteViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		7A85420E269D7102008E17DD /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				7A85420F269D7130008E17DD /* HomeContentsTableViewCell.swift */,
+				7A7D7F2E269ECB45006A680D /* OptionListTableViewCell.swift */,
+			);
+			path = TableViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -411,9 +446,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A42FC9B269D5B7F0054E074 /* ViewController.swift in Sources */,
+				7A7D7F2D269E9E77006A680D /* WriteViewController.swift in Sources */,
+				7A854210269D7130008E17DD /* HomeContentsTableViewCell.swift in Sources */,
 				7A42FC97269D5B7F0054E074 /* AppDelegate.swift in Sources */,
+				7A7D7F2F269ECB45006A680D /* OptionListTableViewCell.swift in Sources */,
 				7A42FC99269D5B7F0054E074 /* SceneDelegate.swift in Sources */,
+				7A85420C269D60C3008E17DD /* HomeViewController.swift in Sources */,
+				7A7D7F2B269E7CFD006A680D /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
